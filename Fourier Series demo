@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Exploring Fourier Series</title>
+    <script src="https://sagecell.sagemath.org/static/jquery.min.js"></script>
+    <script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script>
+    <script>
+$(function () {
+    // Make *any* div with class 'compute' a Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.compute',
+    						template:       sagecell.templates.minimal,
+                           evalButtonText: 'Launch the Interactive Applet Now'});
+});
+    </script>
+  </head>
+  <body style="width: 1000px;">
+
+  <h1>Exploring Fourier Series</h1>
+
+<p>An Interactive Applet powered by Sage and MathJax.</p>
+<p>(By Kelsey Norman with HTML from Prof. Gregory V. Bard)</p>
+
+<hr>
+
+<div class="compute">
+<script type="text/x-sage">
+
+@interact( layout = [['f'], ['p', 'n'], ['x_min', 'x_max'], ['y_min', 'y_max'] ] )
+def fourier ( f = input_box( default = x^2, label = "function to approximate", width = 20 ), 
+        p = input_box( default = 1, label = "bound", width = 5),
+        n = input_box( default = 11, label = "number of iterations", width = 5), 
+        x_min = input_box( default = -5, label = "x min", width = 5),
+        x_max = input_box( default = 5, label = "x max", width = 5),
+        y_min = input_box( default = -2, label = "y min", width = 5),
+        y_max = input_box( default = 25, label = "y max", width = 5) ):  
+    
+    # Set a_0, a_n, and b_n from the formula for Fourier series
+    a_0 = (1 / p) * integral( f(x), x, -p, p)
+    a_n = [(1 / p) * integral( f(x) * cos( j * pi * x / p ), x, -p, p ) for j in range(n) ]
+    b_n = [(1 / p) * integral( f(x) * sin( j * pi * x / p ), x, -p, p ) for j in range(n) ]
+    series = a_0 / 2
+    
+    # Calculate through each iteration of the series (as n increases)
+    for j in range(1, n) :
+        series += a_n[j] * cos( j * pi * x / p ) + b_n[j] * sin( j * pi * x / p )
+        
+    # Display the final iteration
+    print "Iteration " + str(j+1)
+    print series
+    
+    # Plot the given function and its Fourier series approximation
+    graph_f = plot( (f(x)), (x, -5, 5), color = 'red' )
+    graph_series = plot( (series(x)) , (x, x_min, x_max), ymin = y_min, ymax = y_max)
+    graph = graph_f + graph_series
+    graph.show()
+    
+
+</script>
+</div>
+
+<hr>
+Last modified on June 6th, 2017.
+</body>
+</html>

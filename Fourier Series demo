@@ -51,7 +51,7 @@ def fourier ( f = input_box( default = x^2, label = "function to approximate", w
     print series
     
     # Plot the given function and its Fourier series approximation
-    graph_f = plot( (f(x)), (x, -5, 5), color = 'red' )
+    graph_f = plot( (f(x)), (x, x_min, x_max), ymin = y_min, ymax = y_max, color = 'red' )
     graph_series = plot( (series(x)) , (x, x_min, x_max), ymin = y_min, ymax = y_max)
     graph = graph_f + graph_series
     graph.show()

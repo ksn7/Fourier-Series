@@ -45,19 +45,18 @@ def fourier ( f = input_box( default = x^2, label = "function to approximate", w
     # Calculate through each iteration of the series (as n increases)
     for j in range(1, n) :
         series += a_n[j] * cos( j * pi * x / p ) + b_n[j] * sin( j * pi * x / p )
-        
-    # Display the final iteration
-    print "Iteration " + str(j+1)
-    print series
     
     # Plot the given function and its Fourier series approximation
     graph_f = plot( (f(x)), (x, x_min, x_max), ymin = y_min, ymax = y_max, color = 'red', 
         legend_label = "Original function" )
     graph_series = plot( (series(x)) , (x, x_min, x_max), ymin = y_min, ymax = y_max, 
-        legend_label = "Fourier Series Approximation")
+        legend_label = "Fourier Series approximation")
     graph = graph_f + graph_series
     graph.show()
     
+    # Display the final iteration
+    print "Iteration " + str(j+1)
+    print series
 
 </script>
 </div>

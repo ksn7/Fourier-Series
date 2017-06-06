@@ -51,8 +51,10 @@ def fourier ( f = input_box( default = x^2, label = "function to approximate", w
     print series
     
     # Plot the given function and its Fourier series approximation
-    graph_f = plot( (f(x)), (x, x_min, x_max), ymin = y_min, ymax = y_max, color = 'red' )
-    graph_series = plot( (series(x)) , (x, x_min, x_max), ymin = y_min, ymax = y_max)
+    graph_f = plot( (f(x)), (x, x_min, x_max), ymin = y_min, ymax = y_max, color = 'red', 
+        legend_label = "Original function" )
+    graph_series = plot( (series(x)) , (x, x_min, x_max), ymin = y_min, ymax = y_max, 
+        legend_label = "Fourier Series Approximation")
     graph = graph_f + graph_series
     graph.show()
     

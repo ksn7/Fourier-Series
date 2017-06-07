@@ -39,24 +39,35 @@ def fourier ( f = input_box( default = x^2, label = "function to approximate", w
     
     # Set a_0, a_n, and b_n from the formula for Fourier series
     a_0 = (1 / p) * integral( f(x), x, -p, p)
-    a_n = [(1 / p) * integral( f(x) * cos( j * pi * x / p ), x, -p, p ) for j in range(n) ]
-    b_n = [(1 / p) * integral( f(x) * sin( j * pi * x / p ), x, -p, p ) for j in range(n) ]
-    series = a_0 / 2
     
     # Switch options for type of series
     if series_type == 'full':
+        # Calculate the coefficients for the type of series 
+        a_n = [(1 / p) * integral( f(x) * cos( j * pi * x / p ), x, -p, p ) for j in range(n) ]
+        b_n = [(1 / p) * integral( f(x) * sin( j * pi * x / p ), x, -p, p ) for j in range(n) ]
+        series = a_0 / 2
+        
         # Calculate through each iteration of the series (as n increases)
         for j in range(1, n) :
             series += a_n[j] * cos( j * pi * x / p ) + b_n[j] * sin( j * pi * x / p )
         
     elif series_type == 'sine':
+        # Calculate the coefficients for the type of series
+        b_n = [(1 / p) * integral( 2 * f(x) * sin( j * pi * x / p), x, 0, p ) for j in range(n)]
+        series = 0
+        
+        # Calculate through each iteration of the series as n increases.
         for j in range(1, n) :
             series += b_n[j] * sin( j * pi * x / p)
             
     elif series_type == 'cosine':
+        # Calculate the coefficients for the type of series
+        a_n = [(1 / p) * integral( 2 * f(x) * cos( j * pi * x / p), x, 0, p ) for j in range(n)]
+        series = a_0 / 2
+        
         for j in range(1, n) :
             series += a_n[j] * cos( j * pi * x / p)
-                    
+                
     # Display the final iteration
     print "Our approximation is: "
     print series

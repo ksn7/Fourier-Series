@@ -68,7 +68,6 @@ def fourier ( f = input_box( default = x^2, label = "function to approximate", w
             series += a_n[j] * cos( j * pi * x / p)
                 
     # Display the final iteration
-    print "If displaying a sine or cosine series, the series will approximate the function from 0 to the bound. If displaying the full Fourier series, the series will approximate the function from the lower bound to the upper bound."
     print "Our approximation is: "
     print series
     

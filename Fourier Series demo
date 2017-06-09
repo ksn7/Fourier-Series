@@ -37,7 +37,7 @@ def fourier ( f = input_box( default = x^2, label = "function to approximate", w
         y_min = input_box( default = -2, label = "y min", width = 5),
         y_max = input_box( default = 25, label = "y max", width = 5) ):  
     
-    func = f(x)
+    func = f.function(x)
     
     # Switch options for type of series
     if series_type == 'full':

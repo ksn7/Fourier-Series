@@ -88,6 +88,6 @@ def fourier ( f = input_box( default = x^2, label = "function to approximate", w
 </div>
 
 <hr>
-Last modified on June 7th, 2017.
+Last modified on June 9th, 2017.
 </body>
 </html>

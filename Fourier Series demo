@@ -54,7 +54,7 @@ def fourier ( f = input_box( default = x^2, label = "f(x) = ", width = 20 ),
         y_min = input_box( default = -2, label = "y min", width = 5),
         y_max = input_box( default = 25, label = "y max", width = 5) ):  
     
-    func(x) = f.function(x)
+    func = f.function(x)
     
     # Switch options for type of series
     if series_type == 'full':
@@ -91,9 +91,9 @@ def fourier ( f = input_box( default = x^2, label = "f(x) = ", width = 20 ),
     
     # Plot the given function and its Fourier series approximation
     if series.has(x):
-        graph_f = plot( func, (x, x_min, x_max), ymin = y_min, ymax = y_max, color = 'red', 
+        graph_f = plot( func, (x_min, x_max), ymin = y_min, ymax = y_max, color = 'red', 
             legend_label = "Original function" )
-        graph_series = plot( series(x), (x, x_min, x_max), ymin = y_min, ymax = y_max, 
+        graph_series = plot( series, (x_min, x_max), ymin = y_min, ymax = y_max, 
             legend_label = "Fourier Series approximation")
         graph = graph_f + graph_series
         graph.show()
@@ -104,6 +104,6 @@ def fourier ( f = input_box( default = x^2, label = "f(x) = ", width = 20 ),
 </div>
 
 <hr>
-Last modified on July 24th, 2017.
+Last modified on July 26th, 2017.
 </body>
 </html>
